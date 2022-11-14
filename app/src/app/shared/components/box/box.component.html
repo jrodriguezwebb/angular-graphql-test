@@ -1,5 +1,9 @@
 <div class="card">
-  <img [src]="box?.node?.iconUrl" class="card-img-top" alt="..." />
+  <img
+    [src]="box?.node?.iconUrl"
+    src-fallback="./assets/image-not-found.png"
+    class="card-img-top"
+    alt="..." />
   <div class="card-body">
     <h5 class="card-title">{{ box?.node?.name }}</h5>
     <p class="card-text">

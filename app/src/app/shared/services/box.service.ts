@@ -6,6 +6,21 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { OpenBoxInput } from '../interfaces/box.interface';
 
+export const OPEN_BOX_QUERY = gql`
+  mutation OpenBox($input: OpenBoxInput!) {
+    openBox(input: $input) {
+      boxOpenings {
+        id
+        itemVariant {
+          id
+          name
+          value
+        }
+      }
+    }
+  }
+`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +36,7 @@ export class BoxService {
     return this.apollo
       .query<BoxesDTO>({
         query: gql`
-          {
+          query {
             boxes(free: ${free}, purchasable: ${purchasable}, openable: ${openable}) {
               edges {
                 node {
@@ -42,20 +57,7 @@ export class BoxService {
   public openBox(input: OpenBoxInput) {
     return this.apollo
       .mutate({
-        mutation: gql`
-          mutation OpenBox($input: OpenBoxInput!) {
-            openBox(input: $input) {
-              boxOpenings {
-                id
-                itemVariant {
-                  id
-                  name
-                  value
-                }
-              }
-            }
-          }
-        `,
+        mutation: OPEN_BOX_QUERY,
         variables: { input },
       })
       .pipe(map(boxesData => boxesData?.data));

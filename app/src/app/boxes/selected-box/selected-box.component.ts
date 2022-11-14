@@ -37,7 +37,6 @@ export class SelectedBoxComponent {
         .subscribe(response => {
           console.log(response);
           this.isLoading = false;
-          console.log(this.isLoading);
         });
     }
   }
