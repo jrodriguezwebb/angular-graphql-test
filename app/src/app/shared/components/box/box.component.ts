@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Edge } from '../../interfaces/edge.interface';
 
 @Component({
@@ -9,8 +15,9 @@ import { Edge } from '../../interfaces/edge.interface';
 })
 export class BoxComponent {
   @Input() box: Edge | undefined;
+  @Output() selectedBoxEvent = new EventEmitter<Edge>();
 
   public selectBox() {
-    console.log(this.box);
+    this.selectedBoxEvent.emit(this.box);
   }
 }

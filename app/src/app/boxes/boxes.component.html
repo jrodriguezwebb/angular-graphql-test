@@ -1,7 +1,9 @@
 <div class="row">
   <ng-container *ngIf="(boxes$ | async)?.boxes?.edges?.length">
     <div class="col-sm-6" *ngFor="let box of (boxes$ | async)?.boxes?.edges">
-      <app-box [box]="box"></app-box>
+      <app-box
+        [box]="box"
+        (selectedBoxEvent)="handleSelectedBox($event)"></app-box>
     </div>
   </ng-container>
 </div>
