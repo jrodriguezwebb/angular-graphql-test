@@ -30,4 +30,5 @@
       Log in through Steam
     </button>
   </form>
+  <div *ngIf="(loggedUser$ | async) === true">Show logged user and balance</div>
 </nav>
