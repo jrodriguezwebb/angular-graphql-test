@@ -1,6 +1,6 @@
 import { Apollo, gql } from 'apollo-angular';
-import { Boxes } from '../interfaces/boxes.interface';
 import { BoxesDTO } from './../interfaces/boxes-dto.interface';
+import { Edge } from '../interfaces/edge.interface';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -9,8 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BoxService {
-  // TODO: type it
-  private selectedBox: any;
+  private selectedBox: Edge | undefined;
   constructor(private apollo: Apollo) {}
 
   public getBoxes(
@@ -39,7 +38,7 @@ export class BoxService {
   }
 
   // TODO: Type output
-  public openBox(input: Boxes) {
+  public openBox(input: Edge) {
     return this.apollo
       .mutate({
         mutation: gql`
@@ -61,13 +60,11 @@ export class BoxService {
       .pipe(map(boxesData => boxesData?.data));
   }
 
-  // TODO: Type this
-  public setSelectedBox(box: any) {
+  public setSelectedBox(box: Edge) {
     this.selectedBox = box;
   }
 
-  // TODO: Type this
-  public getSelectedBox() {
+  public getSelectedBox(): Edge | undefined {
     return this.selectedBox;
   }
 }

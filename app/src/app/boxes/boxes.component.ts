@@ -1,15 +1,17 @@
 import { BoxService } from '../shared/services/box.service';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BoxesDTO } from '../shared/interfaces/boxes-dto.interface';
 
 @Component({
   selector: 'app-boxes',
   templateUrl: './boxes.component.html',
   styleUrls: ['./boxes.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoxesComponent {
+  public boxes$: Observable<BoxesDTO>;
   constructor(private readonly boxService: BoxService) {
-    boxService.getBoxes().subscribe(boxes => {
-      console.log(boxes);
-    });
+    this.boxes$ = this.boxService.getBoxes();
   }
 }
