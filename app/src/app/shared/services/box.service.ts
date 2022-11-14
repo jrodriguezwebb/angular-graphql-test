@@ -53,7 +53,6 @@ export class BoxService {
       .pipe(map(boxesData => boxesData?.data));
   }
 
-  // TODO: Type output
   public openBox(input: OpenBoxInput) {
     return this.apollo
       .mutate({

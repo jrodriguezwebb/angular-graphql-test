@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
   <a routerLink="/" class="navbar-brand">Openboxes</a>
   <form
+    *ngIf="(loggedUser$ | async) === false"
     action="https://steamcommunity.com/openid/login"
     method="post"
     class="form-inline">
