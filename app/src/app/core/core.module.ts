@@ -1,3 +1,4 @@
+import { AuthSteamReturnComponent } from './components/auth-steam-return/auth-steam-return.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { GraphQLModule } from './graphql.module';
@@ -14,8 +15,8 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
     GraphQLModule,
     NgbModule,
   ],
-  exports: [NavbarComponent],
-  declarations: [NavbarComponent],
+  exports: [NavbarComponent, AuthSteamReturnComponent],
+  declarations: [NavbarComponent, AuthSteamReturnComponent],
   providers: [],
 })
 export class CoreModule {
