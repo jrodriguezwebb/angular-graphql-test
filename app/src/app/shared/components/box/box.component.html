@@ -6,5 +6,16 @@
       {{ box?.node?.cost }}
     </p>
   </div>
-  <a class="btn btn-primary select-box" (click)="selectBox()">Select box</a>
+  <a
+    *ngIf="type === 'select'"
+    class="btn btn-primary select-box"
+    (click)="selectBox()"
+    >Select box</a
+  >
+  <a
+    *ngIf="type === 'open'"
+    class="btn btn-primary select-box"
+    (click)="openBox()"
+    >Open box</a
+  >
 </div>

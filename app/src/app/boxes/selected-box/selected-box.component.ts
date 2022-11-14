@@ -14,4 +14,8 @@ export class SelectedBoxComponent {
     this.selectedBox = this.boxService.getSelectedBox();
     console.log(this.selectedBox);
   }
+
+  public handleBoxOpening(open: boolean) {
+    console.log(open);
+  }
 }

@@ -1,1 +1,8 @@
-<p>selected-box works!</p>
+<div class="selected-box">
+  <app-box
+    *ngIf="selectedBox"
+    [box]="selectedBox"
+    [type]="'open'"
+    (openBoxEvent)="handleBoxOpening($event)">
+  </app-box>
+</div>

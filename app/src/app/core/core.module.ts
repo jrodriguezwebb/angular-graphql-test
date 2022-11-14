@@ -6,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     HttpClientModule,
     GraphQLModule,
     NgbModule,
