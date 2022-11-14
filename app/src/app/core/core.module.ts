@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
-  imports: [BrowserModule, CommonModule, HttpClientModule],
+  imports: [BrowserModule, CommonModule, HttpClientModule, GraphQLModule],
   exports: [NavbarComponent],
   declarations: [NavbarComponent],
   providers: [],
