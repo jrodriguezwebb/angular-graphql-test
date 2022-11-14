@@ -1,1 +1,1 @@
-export { CoreService } from './core.service';
+export { CoreService } from './user.service';

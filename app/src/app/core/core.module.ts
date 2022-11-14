@@ -1,12 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { GraphQLModule } from './graphql.module';
 
 @NgModule({
-  imports: [BrowserModule, CommonModule, HttpClientModule, GraphQLModule],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    HttpClientModule,
+    GraphQLModule,
+    NgbModule,
+  ],
   exports: [NavbarComponent],
   declarations: [NavbarComponent],
   providers: [],

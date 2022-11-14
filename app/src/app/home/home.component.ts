@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { BoxService } from '../shared/services/box.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
