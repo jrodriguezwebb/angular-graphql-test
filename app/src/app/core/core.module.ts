@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -17,8 +18,12 @@ import { RouterModule } from '@angular/router';
     GraphQLModule,
     NgbModule,
   ],
-  exports: [NavbarComponent, AuthSteamReturnComponent],
-  declarations: [NavbarComponent, AuthSteamReturnComponent],
+  exports: [NavbarComponent, AuthSteamReturnComponent, PageNotFoundComponent],
+  declarations: [
+    NavbarComponent,
+    AuthSteamReturnComponent,
+    PageNotFoundComponent,
+  ],
   providers: [],
 })
 export class CoreModule {

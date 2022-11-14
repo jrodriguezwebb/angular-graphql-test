@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Edge } from '../shared/interfaces/edge.interface';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { BoxesRoutesEnum } from './boxes.routes';
 
 @Component({
   selector: 'app-boxes',
@@ -19,6 +20,8 @@ export class BoxesComponent {
 
   public handleSelectedBox(selectedBox: Edge) {
     this.boxService.setSelectedBox(selectedBox);
-    this.router.navigate(['boxes/selected-box']);
+    this.router.navigate([
+      `${BoxesRoutesEnum.Boxes}/${BoxesRoutesEnum.SelectedBox}`,
+    ]);
   }
 }

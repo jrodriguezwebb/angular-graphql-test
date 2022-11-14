@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { Edge } from 'src/app/shared/interfaces/edge.interface';
 import { BoxService } from 'src/app/shared/services/box.service';
+import { Router } from '@angular/router';
+import { BoxesRoutesEnum } from '../boxes.routes';
 
 @Component({
   selector: 'app-selected-box',
@@ -12,8 +14,11 @@ export class SelectedBoxComponent {
   public selectedBox: Edge | undefined;
   public isLoading = false;
   public opened = false;
-  constructor(private readonly boxService: BoxService) {
+  constructor(private readonly boxService: BoxService, private router: Router) {
     this.selectedBox = this.boxService.getSelectedBox();
+    if (!this.selectedBox) {
+      this.router.navigate([BoxesRoutesEnum.Boxes]);
+    }
   }
 
   public handleBoxOpening(opened: boolean) {
