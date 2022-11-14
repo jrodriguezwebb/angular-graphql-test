@@ -13,7 +13,7 @@
     >Select box</a
   >
   <a
-    *ngIf="type === 'open'"
+    *ngIf="type === 'open' && !opened"
     class="btn btn-primary select-box"
     (click)="openBox()"
     >Open box</a

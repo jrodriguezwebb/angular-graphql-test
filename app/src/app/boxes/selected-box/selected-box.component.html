@@ -1,8 +1,10 @@
 <div class="selected-box">
   <app-box
-    *ngIf="selectedBox"
+    *ngIf="selectedBox && !isLoading"
     [box]="selectedBox"
     [type]="'open'"
+    [opened]="opened"
     (openBoxEvent)="handleBoxOpening($event)">
   </app-box>
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 </div>

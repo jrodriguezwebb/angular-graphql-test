@@ -16,6 +16,7 @@ import { Edge } from '../../interfaces/edge.interface';
 export class BoxComponent {
   @Input() box: Edge | undefined;
   @Input() type: 'select' | 'open' = 'select';
+  @Input() opened = false;
   @Output() selectedBoxEvent = new EventEmitter<Edge>();
   @Output() openBoxEvent = new EventEmitter<boolean>();
 
@@ -24,6 +25,7 @@ export class BoxComponent {
   }
 
   public openBox(): void {
-    this.openBoxEvent.emit(true);
+    this.opened = true;
+    this.openBoxEvent.emit(this.opened);
   }
 }
