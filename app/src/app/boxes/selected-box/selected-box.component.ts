@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { catchError } from 'rxjs/operators';
 import { Edge } from 'src/app/shared/interfaces/edge.interface';
 import { BoxService } from 'src/app/shared/services/box.service';
 
@@ -16,12 +17,28 @@ export class SelectedBoxComponent {
   }
 
   public handleBoxOpening(opened: boolean) {
-    console.log(opened);
     this.opened = opened;
     this.isLoading = true;
-    setTimeout(() => {
-      this.isLoading = false;
-      console.log(this.isLoading);
-    }, 1000);
+    if (this.selectedBox) {
+      const { id, cost } = this.selectedBox.node;
+      const openBoxInput = {
+        boxId: id,
+        amount: Math.floor(cost),
+        multiplierBoxBet: 1.0,
+      };
+      this.boxService
+        .openBox(openBoxInput)
+        .pipe(
+          catchError(error => {
+            this.isLoading = false;
+            throw new Error(error);
+          })
+        )
+        .subscribe(response => {
+          console.log(response);
+          this.isLoading = false;
+          console.log(this.isLoading);
+        });
+    }
   }
 }

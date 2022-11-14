@@ -4,6 +4,7 @@ import { Edge } from '../interfaces/edge.interface';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { OpenBoxInput } from '../interfaces/box.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,7 @@ export class BoxService {
   }
 
   // TODO: Type output
-  public openBox(input: Edge) {
+  public openBox(input: OpenBoxInput) {
     return this.apollo
       .mutate({
         mutation: gql`
