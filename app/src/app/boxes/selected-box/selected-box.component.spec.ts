@@ -8,9 +8,8 @@ describe('SelectedBoxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectedBoxComponent ]
-    })
-    .compileComponents();
+      declarations: [SelectedBoxComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SelectedBoxComponent);
     component = fixture.componentInstance;

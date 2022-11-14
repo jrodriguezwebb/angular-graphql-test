@@ -8,9 +8,8 @@ describe('AuthSteamReturnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthSteamReturnComponent ]
-    })
-    .compileComponents();
+      declarations: [AuthSteamReturnComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AuthSteamReturnComponent);
     component = fixture.componentInstance;
