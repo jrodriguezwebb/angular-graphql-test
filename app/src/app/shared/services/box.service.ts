@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BoxService {
+  // TODO: type it
+  private selectedBox: any;
   constructor(private apollo: Apollo) {}
 
   public getBoxes(
@@ -57,5 +59,15 @@ export class BoxService {
         variables: { input },
       })
       .pipe(map(boxesData => boxesData?.data));
+  }
+
+  // TODO: Type this
+  public setSelectedBox(box: any) {
+    this.selectedBox = box;
+  }
+
+  // TODO: Type this
+  public getSelectedBox() {
+    return this.selectedBox;
   }
 }

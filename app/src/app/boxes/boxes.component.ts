@@ -2,11 +2,11 @@ import { BoxService } from '../shared/services/box.service';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-boxes',
+  templateUrl: './boxes.component.html',
+  styleUrls: ['./boxes.component.css'],
 })
-export class HomeComponent {
+export class BoxesComponent {
   constructor(private readonly boxService: BoxService) {
     boxService.getBoxes().subscribe(boxes => {
       console.log(boxes);

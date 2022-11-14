@@ -1,11 +1,11 @@
+import { BoxesComponent } from './boxes.component';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
-import { routing } from './home.routing.module';
+import { routing } from './boxes.routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [CommonModule, SharedModule, routing],
-  declarations: [HomeComponent],
+  declarations: [BoxesComponent],
 })
-export class HomeModule {}
+export class BoxesModule {}
