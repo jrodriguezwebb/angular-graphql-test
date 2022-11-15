@@ -1,5 +1,6 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
   <a routerLink="/" class="navbar-brand">Openboxes</a>
+  <button (click)="login()">Login</button>
   <form
     *ngIf="(loggedUser$ | async) === false"
     action="https://steamcommunity.com/openid/login"
@@ -25,7 +26,11 @@
     <input
       type="hidden"
       name="openid.return_to"
-      value="http://localhost:4200/auth/steam/return" />
+      value="http://localhost:4200" />
+    <!-- <input
+      type="hidden"
+      name="openid.return_to"
+      value="https://api-staging.entertoroll.com/auth/steam/return" /> -->
     <button class="btn btn-outline-success" type="submit">
       Log in through Steam
     </button>
