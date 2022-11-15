@@ -1,12 +1,25 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
   <a routerLink="/" class="navbar-brand">Openboxes</a>
   <button
-    *ngIf="(loggedUser$ | async) === loggedStatusEnum.NotLogged"
+    *ngIf="(currentUser$ | async)?.status === loggedStatusEnum.NotLogged"
     class="btn btn-outline-success"
     (click)="login()">
     Login
   </button>
-  <div *ngIf="(loggedUser$ | async) !== loggedStatusEnum.NotLogged">
-    {{ currentUser?.name }}
+  <div *ngIf="(currentUser$ | async)?.status !== loggedStatusEnum.NotLogged">
+    {{ (currentUser$ | async)?.name }}
+    <button
+      type="button"
+      class="btn btn-outline-secondary me-2"
+      placement="bottom"
+      [ngbPopover]="popContent"
+      popoverTitle="Wallet">
+      Wallet
+    </button>
+    <ng-template #popContent>
+      <p *ngFor="let wallet of (currentUser$ | async)?.wallets">
+        {{ wallet.amount }} | {{ wallet.currency }}
+      </p>
+    </ng-template>
   </div>
 </nav>
