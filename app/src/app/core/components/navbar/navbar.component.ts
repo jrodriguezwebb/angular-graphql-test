@@ -14,8 +14,6 @@ export class NavbarComponent {
   public currentUser$: Observable<CurrentUser>;
   constructor(private userService: UserService) {
     this.currentUser$ = this.userService.currentUser$;
-    this.userService.getUserInformation().subscribe();
-    this.currentUser$.pipe(tap(a => console.log(a)));
   }
 
   login() {

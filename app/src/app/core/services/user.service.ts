@@ -1,5 +1,5 @@
 import { Apollo, gql } from 'apollo-angular';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   CurrentUser,
