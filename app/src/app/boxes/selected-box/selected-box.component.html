@@ -1,16 +1,21 @@
 <div class="selected-box">
   <app-box
-    *ngIf="selectedBox && !isLoading"
+    *ngIf="selectedBox && !isLoading && openBox$ === undefined"
     [box]="selectedBox"
     [type]="'open'"
     [opened]="opened"
     (openBoxEvent)="handleBoxOpening($event)">
   </app-box>
+  <ng-container *ngIf="openBox$ | async as openBox">
+    <p *ngFor="let openings of openBox?.boxOpenings">
+      {{ openings.itemVariant.name }} | {{ openings.itemVariant.value }}
+    </p>
+    <img
+      *ngIf="openBox"
+      src="./assets/prize.webp"
+      width="300"
+      height="300"
+      alt="prize" />
+  </ng-container>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-  <img
-    *ngIf="openBox"
-    src="./assets/prize.webp"
-    width="300"
-    height="300"
-    alt="prize" />
 </div>
