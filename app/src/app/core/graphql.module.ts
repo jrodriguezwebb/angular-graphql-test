@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { ApolloClientOptions, InMemoryCache, split } from '@apollo/client/core';
+import {
+  ApolloClientOptions,
+  DefaultOptions,
+  InMemoryCache,
+  split,
+} from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
@@ -10,8 +15,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const http = httpLink.create({
     uri,
   });
+
   const ws = new WebSocketLink({
-    uri: 'ws://api-staging.csgoroll.com/graphql',
+    uri: 'wss://api-staging.csgoroll.com/graphql',
     options: {
       reconnect: true,
     },
@@ -20,6 +26,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const link = split(
     ({ query }) => {
       const definition = getMainDefinition(query);
+      console.log(definition);
       return (
         definition.kind === 'OperationDefinition' &&
         definition.operation === 'subscription'
@@ -28,9 +35,20 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     ws,
     http
   );
+  const defaultOptions: DefaultOptions = {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  };
   return {
     link,
     cache: new InMemoryCache(),
+    defaultOptions,
   };
 }
 

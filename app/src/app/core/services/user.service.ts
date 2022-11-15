@@ -35,6 +35,18 @@ export const UPDATE_WALLET_SUBSCRIPTION = gql`
     }
   }
 `;
+
+export const UPDATE_WALLET_SUBSCRIPTION_WALLETTYPE = gql`
+  subscription OnUpdateWallet($walletType: walletType!) {
+    updateWallet(walletType: $walletType) {
+      wallet {
+        id
+        amount
+        name
+      }
+    }
+  }
+`;
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private currentUserSubject: BehaviorSubject<CurrentUser> =
@@ -62,6 +74,13 @@ export class UserService {
   public onUpdateWallet() {
     return this.apollo.subscribe({
       query: UPDATE_WALLET_SUBSCRIPTION,
+    });
+  }
+
+  public onUpdateWalletWithWalletType() {
+    return this.apollo.subscribe({
+      query: UPDATE_WALLET_SUBSCRIPTION_WALLETTYPE,
+      variables: { walletType: 'MAIN' },
     });
   }
 

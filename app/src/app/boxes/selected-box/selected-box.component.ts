@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { catchError, tap } from 'rxjs/operators';
-import { Edge } from 'src/app/shared/interfaces/edge.interface';
-import { BoxService } from 'src/app/shared/services/box.service';
-import { Router } from '@angular/router';
 import { BoxesRoutesEnum } from '../boxes.routes';
-import { OpenBoxClass } from 'src/app/shared/interfaces/open-box.interface';
+import { BoxService } from 'src/app/shared/services/box.service';
+import { catchError, tap } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { Edge } from 'src/app/shared/interfaces/edge.interface';
 import { Observable } from 'rxjs';
+import { OpenBoxClass } from 'src/app/shared/interfaces/open-box.interface';
+import { Router } from '@angular/router';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-selected-box',
@@ -17,7 +18,11 @@ export class SelectedBoxComponent {
   public isLoading = false;
   public opened = false;
   public openBox$: Observable<OpenBoxClass | undefined>;
-  constructor(private readonly boxService: BoxService, private router: Router) {
+  constructor(
+    private readonly boxService: BoxService,
+    private readonly userService: UserService,
+    private router: Router
+  ) {
     this.selectedBox = this.boxService.getSelectedBox();
     if (!this.selectedBox) {
       this.router.navigate([BoxesRoutesEnum.Boxes]);
@@ -37,6 +42,7 @@ export class SelectedBoxComponent {
       this.openBox$ = this.boxService.openBox(openBoxInput).pipe(
         tap(() => {
           this.isLoading = false;
+          this.userService.getUserInformation().subscribe();
         }),
         catchError(error => {
           this.isLoading = false;

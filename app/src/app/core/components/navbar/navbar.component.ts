@@ -14,9 +14,8 @@ export class NavbarComponent {
   public currentUser$: Observable<CurrentUser>;
   constructor(private userService: UserService) {
     this.currentUser$ = this.userService.currentUser$;
-    this.userService.onUpdateWallet().subscribe(a => {
-      console.log(a);
-    });
+    this.userService.onUpdateWallet().subscribe();
+    this.userService.onUpdateWalletWithWalletType().subscribe();
   }
 
   login() {
