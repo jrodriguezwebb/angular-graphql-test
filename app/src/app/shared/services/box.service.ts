@@ -4,6 +4,7 @@ import { Edge } from '../interfaces/edge.interface';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { OpenBoxClass, OpenBoxDto } from '../interfaces/open-box.interface';
 import { OpenBoxInput } from '../interfaces/box.interface';
 
 export const OPEN_BOX_QUERY = gql`
@@ -53,13 +54,13 @@ export class BoxService {
       .pipe(map(boxesData => boxesData?.data));
   }
 
-  public openBox(input: OpenBoxInput) {
+  public openBox(input: OpenBoxInput): Observable<OpenBoxClass | undefined> {
     return this.apollo
-      .mutate({
+      .mutate<OpenBoxDto>({
         mutation: OPEN_BOX_QUERY,
         variables: { input },
       })
-      .pipe(map(boxesData => boxesData?.data));
+      .pipe(map(boxesData => boxesData?.data?.openBox));
   }
 
   public setSelectedBox(box: Edge) {

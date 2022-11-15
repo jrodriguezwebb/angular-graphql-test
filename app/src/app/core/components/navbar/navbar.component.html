@@ -1,39 +1,12 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
   <a routerLink="/" class="navbar-brand">Openboxes</a>
-  <button (click)="login()">Login</button>
-  <form
-    *ngIf="(loggedUser$ | async) === false"
-    action="https://steamcommunity.com/openid/login"
-    method="post"
-    class="form-inline">
-    <input
-      type="hidden"
-      name="openid.identity"
-      value="http://specs.openid.net/auth/2.0/identifier_select" />
-    <input
-      type="hidden"
-      name="openid.claimed_id"
-      value="http://specs.openid.net/auth/2.0/identifier_select" />
-    <input
-      type="hidden"
-      name="openid.ns"
-      value="http://specs.openid.net/auth/2.0" />
-    <input type="hidden" name="openid.mode" value="checkid_setup" />
-    <input
-      type="hidden"
-      name="openid.realm"
-      value="https://api-staging.entertoroll.com" />
-    <input
-      type="hidden"
-      name="openid.return_to"
-      value="http://localhost:4200" />
-    <!-- <input
-      type="hidden"
-      name="openid.return_to"
-      value="https://api-staging.entertoroll.com/auth/steam/return" /> -->
-    <button class="btn btn-outline-success" type="submit">
-      Log in through Steam
-    </button>
-  </form>
-  <div *ngIf="(loggedUser$ | async) === true">Show logged user and balance</div>
+  <button
+    *ngIf="(loggedUser$ | async) === loggedStatusEnum.NotLogged"
+    class="btn btn-outline-success"
+    (click)="login()">
+    Login
+  </button>
+  <div *ngIf="(loggedUser$ | async) !== loggedStatusEnum.NotLogged">
+    {{ currentUser?.name }}
+  </div>
 </nav>

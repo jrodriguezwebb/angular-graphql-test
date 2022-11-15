@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CurrentUser } from '../../../shared/interfaces/user-dto.interface';
+import { LogStatus } from '../../services/user.service';
 import { Observable } from 'rxjs';
 import { UserService } from '../../services';
 
@@ -8,10 +10,14 @@ import { UserService } from '../../services';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  public loggedUser$: Observable<boolean>;
+  public loggedUser$: Observable<string>;
+  public loggedStatusEnum = LogStatus;
+  public currentUser: CurrentUser | undefined;
   constructor(private userService: UserService) {
     this.loggedUser$ = this.userService.loggedUser$;
-    this.userService.getUserInformation().subscribe(a => console.log(a));
+    this.userService.getUserInformation().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   login() {
