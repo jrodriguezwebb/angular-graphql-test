@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CurrentUser } from '../../../shared/interfaces/user-dto.interface';
 import { LogStatus } from '../../services/user.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserService } from '../../services';
 
 @Component({
@@ -14,6 +14,9 @@ export class NavbarComponent {
   public currentUser$: Observable<CurrentUser>;
   constructor(private userService: UserService) {
     this.currentUser$ = this.userService.currentUser$;
+    this.userService.onUpdateWallet().subscribe(a => {
+      console.log(a);
+    });
   }
 
   login() {

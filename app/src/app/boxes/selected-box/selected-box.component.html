@@ -7,4 +7,10 @@
     (openBoxEvent)="handleBoxOpening($event)">
   </app-box>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+  <img
+    *ngIf="openBox"
+    src="./assets/prize.webp"
+    width="300"
+    height="300"
+    alt="prize" />
 </div>
