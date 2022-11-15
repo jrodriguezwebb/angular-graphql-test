@@ -1,5 +1,7 @@
+$selected-box-min-height: 500px;
+
 .selected-box {
-  min-height: 500px;
+  min-height: $selected-box-min-height;
   display: flex;
   align-items: center;
   justify-content: center;

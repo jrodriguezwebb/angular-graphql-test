@@ -1,13 +1,17 @@
+$card-margin: 5px;
+$card-img-size: 324px;
+$select-box-margin: 10px;
+
 .card {
-  margin: 5px;
+  margin: $card-margin;
 }
 
 .card-img-top {
-  height: 324px;
-  min-width: 324px;
+  height: $card-img-size;
+  min-width: $card-img-size;
 }
 
 .select-box {
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: $select-box-margin;
 }

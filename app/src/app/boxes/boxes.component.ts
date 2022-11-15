@@ -9,7 +9,6 @@ import { BoxesRoutesEnum } from './boxes.routes';
 @Component({
   selector: 'app-boxes',
   templateUrl: './boxes.component.html',
-  styleUrls: ['./boxes.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoxesComponent {
